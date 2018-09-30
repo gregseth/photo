@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="../" />
+    <meta charset="UTF-8" />
+    
+    <title>Grégory Millasseau − Photos</title>
+   
+<style>
+#filter {
+    background: #000 url('{{ image.url }}') no-repeat center center fixed;
+}
+</style>
+<link rel="stylesheet" href="static/screen.css" />
+<link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css" /> 
+
+</head>
+
+<body>
+    <div id="filter" ></div>
+    
+    
+    <header>
+        <h1>Grégory Millasseau</h1>
+        <hr />
+        <h2>photographie</h2>    
+    </header>
+    
+    <div id="big">
+        <a href="index.php">
+            <img src="{{ image.url }}" />
+            
+        
+            <div id="exif">
+            {% if image.exif -%}
+                <div style="float:left;">{{ image.exif.Model }} + {{ image.exif.LensModel }}</div><div style="float:right;">{{ image.exif.FocalLength }} − {{ image.exif.ExposureTime  }}s − f/{{ image.exif.FNumber }} − ISO{{ image.exif.ISO }}</div>
+            {%- else -%}
+                No EXIF
+            {%- endif %}
+            </div>
+
+        </a>
+    </div>
+    
+    <footer>
+        <ul>
+            <li><a href="all/">Toutes</a></li>
+            <li><a href="macro/">Macro</a></li>
+            <li><a href="mobile/">Mobile</a></li>
+            <li id="icons">
+                <a href="https://www.flickr.com/photos/gregseth/"><span class="fa fa-flickr"></span></a><a href="https://www.instagram.com/gregseth"><span class="fa fa-instagram"></span></a>
+            </li>
+            <li><a href="{{ image.album }}/{{ image.next }}?>">
+            {%- if image.album == 'all' -%}
+                Aléatoire
+            {%- else -%}
+                Suivante
+            {%- endif -%}
+            </a></li>
+        </ul>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel');
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+body {
+    min-width: 900px;
+    background: #000;
+    margin: 0;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+} 
+/*
+_|    _|                            _|                      
+_|    _|    _|_|      _|_|_|    _|_|_|    _|_|    _|  _|_|  
+_|_|_|_|  _|_|_|_|  _|    _|  _|    _|  _|_|_|_|  _|_|      
+_|    _|  _|        _|    _|  _|    _|  _|        _|        
+_|    _|    _|_|_|    _|_|_|    _|_|_|    _|_|_|  _|        
+*/
+header {
+    background: rgba(0,0,0,.8);
+    height: 5rem;
+    border: none;
+    border-bottom: solid #FFF 1px;
+    padding: 1rem;
+    font-family: Cinzel, serif;
+    text-align: center;
+    color: #FFF;
+    
+}
+header h1, header h2 {
+    margin: 0;
+    padding: 0 0 0 1rem; /* fixes extra space induced by letter-spacing */
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: 1em;
+}
+header h2 {
+    font-size: 1rem;
+    
+    font-variant: small-caps;
+}
+header hr {
+    width: 30rem;
+    border: none;
+    border-top: solid 1px #FFF;
+}
+/*                                     
+_|_|_|                                  
+_|    _|    _|_|_|    _|_|_|    _|_|    
+_|_|_|    _|    _|  _|    _|  _|_|_|_|  
+_|        _|    _|  _|    _|  _|        
+_|          _|_|_|    _|_|_|    _|_|_|  
+                          _|            
+                      _|_|              
+*/
+#filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    padding: 0;
+    -webkit-filter: blur(40px) brightness(1.5);
+    -moz-filter: blur(40px) brightness(1.5);
+    filter: blur(40px) brightness(1.5);
+    z-index: -1;
+}
+#logo {
+    position: fixed;
+    left: -40px;
+    top: -40px;
+    z-index: -1;
+
+    opacity: .8;
+    mix-blend-mode: luminosity;
+}
+section {
+}
+#big {
+    width: 100%;
+    height: calc(100% - (7rem + 1px) * 2);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+#big img {
+    max-width: calc(90vw - 10px);
+    max-height: calc(90vh - 14rem - 12px);
+    border: #FFF solid 5px;
+    box-shadow: 0px 0px 8rem black;
+}
+#big a:hover #exif {
+    display: block;
+}
+#exif {
+    display: none;
+    background:  rgba(0,0,0,.4);
+    position: absolute;
+    top: calc(7rem + 1px);
+    left: 0;
+    width: calc(100% - 2rem);
+    color: #FFF;
+    font-family: Helvetica, sans-serif;
+    list-style: none;
+    font-size: .7rem;
+    text-align: center;
+    padding: .5rem 1rem;
+    margin: 0;
+}    
+/*                                                      
+_|_|_|_|                      _|                          
+_|        _|_|      _|_|    _|_|_|_|    _|_|    _|  _|_|  
+_|_|_|  _|    _|  _|    _|    _|      _|_|_|_|  _|_|      
+_|      _|    _|  _|    _|    _|      _|        _|        
+_|        _|_|      _|_|        _|_|    _|_|_|  _|        
+*/
+nav {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: .5rem;
+    margin-top: 5rem;
+    margin-right: 1em;
+    text-shadow: 0 0 2rem black;
+}
+nav a {
+    padding-left: .5rem;
+}
+a:link, a:visited {
+    color: #FFF;
+    margin: .2rem;
+    text-decoration: none;
+}
+a:active {
+    color: #333;
+}
+footer a:hover {
+    color: #FFF;
+    text-shadow: 0px 0px 1em #FFF, 0px 0px .5em #FFF;
+}
+footer {
+    background: rgba(0,0,0,.8);
+    height: 5rem;
+    border: none;
+    border-top: solid #FFF 1px;
+    padding: 1rem;
+    text-align: center;
+    color: #FFF;
+}
+footer ul {
+    width: 50rem;
+    margin: 1rem auto;
+    padding: 0;
+    
+}
+footer li {
+    display: table-cell;
+    list-style: none;
+    width: 10rem;
+    height: 3rem;
+    
+    
+    font-size: .8em;
+    font-variant: small-caps;
+    letter-spacing: .3em;
+    
+    vertical-align: middle;
+}
+footer li:not(:first-child) {
+    border-left: solid #FFF 1px;
+}
+footer li#icons {
+    font-size: 1.5rem;
+}
+
+/*
+@media screen and (min-width: 1200px) {
+    #big {
+        margin: 50vh auto;
+        transform: translateY(-50%);
+        border: #FFF solid 7px;
+    }
+    .linktext {
+        display: none;
+    }
+    a:hover .linktext {
+        display: inline;
+    }
+}
+*/
