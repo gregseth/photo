@@ -46,12 +46,7 @@ def album(album):
         return render_template('dof.html')
     album = album if album in ALBUMS else 'all'
     return redirect_random(album)
-    
-#@app.route('/dof/')
-#@app.route('/dof/index.html')
-#def dof_redirect():
-#    return redirect(url_for('dof'), code=301)
-        
+
 
 @app.errorhandler(404)
 @app.route('/')

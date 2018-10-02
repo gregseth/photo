@@ -72,12 +72,15 @@ def get_exif(photo_id):
     # print(result, file=sys.stderr)
 
     # filling with retrieved data
-    for item in result['query']['results']['photo']:
-        exif[item['exif']['tag']] = item['exif']['raw']
-
-    # treating special cases
-    if exif['LensModel'] == '?' and exif['Lens'] != '?':
-        exif['LensModel'] = exif['Lens']
+    try:
+        for item in result['query']['results']['photo']:
+            exif[item['exif']['tag']] = item['exif']['raw']
+        
+        # treating special cases
+        if exif['LensModel'] == '?' and exif['Lens'] != '?':
+            exif['LensModel'] = exif['Lens']
+    except TypeError:
+        exif = None #pass # exif filled with '?'
 
     return exif
 
