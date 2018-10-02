@@ -95,7 +95,7 @@ def get_url(photo_id):
 def load_album(album):  
     if not 'album' in session or session['album'] != album:
         session['album'] = album
-        print('ALBUM ID: {}'.format(album), file=sys.stderr)
+        #print('ALBUM ID: {}'.format(album), file=sys.stderr)
         if album == 'all':
             with open('static/flickr.lst') as lst:
                 session['photos'] = [int(l.rstrip('\n')) for l in lst]

@@ -14,7 +14,7 @@ app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde
 
 @app.route('/<album>/<int:image_id>')
 def show_index(album, image_id):
-    print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id))
+    #print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id))
     if album is None:
         album = 'all'
     load_album(album)
@@ -35,16 +35,23 @@ def show_index(album, image_id):
 def redirect_random(album='all'):
     load_album(album)
     img_id = random.choice(session['photos'])
-    print(img_id)
+    #print(img_id)
     return redirect('{}/{}'.format(album, img_id))
 
 
 @app.route('/<album>/')
 def album(album):
-    print('REQUEST ALBUM: '+album)
+    #print('REQUEST ALBUM: '+album)
+    if album == 'dof':
+        return render_template('dof.html')
     album = album if album in ALBUMS else 'all'
     return redirect_random(album)
     
+#@app.route('/dof/')
+#@app.route('/dof/index.html')
+#def dof_redirect():
+#    return redirect(url_for('dof'), code=301)
+        
 
 @app.errorhandler(404)
 @app.route('/')
