@@ -3,10 +3,11 @@ from flask import session
 from flask import render_template
 from flask import redirect
 
+import sys
 import random
 
 from flickr import load_album, get_next, get_url, get_exif
-from config import ALBUMS
+from config import FLICKR_ALBUMS
 
 app = Flask(__name__)
 app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde67'
@@ -14,7 +15,7 @@ app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde
 
 @app.route('/<album>/<int:image_id>')
 def show_index(album, image_id):
-    #print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id))
+    print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id), file=sys.stderr)
     if album is None:
         album = 'all'
     load_album(album)
@@ -41,10 +42,10 @@ def redirect_random(album='all'):
 
 @app.route('/<album>/')
 def album(album):
-    #print('REQUEST ALBUM: '+album)
+    print('REQUEST ALBUM: '+album, file=sys.stderr)
     if album == 'dof':
         return render_template('dof.html')
-    album = album if album in ALBUMS else 'all'
+    album = album if album in FLICKR_ALBUMS else 'all'
     return redirect_random(album)
 
 
