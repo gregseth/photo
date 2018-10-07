@@ -155,8 +155,11 @@ footer li:not(:first-child) {
 }
 footer li.icons {
     font-size: 1.5rem;
+    letter-spacing: normal;
 }
-
+footer li.icons .fa {
+    margin: 0 .2em;
+}
 .menu ul {
     display: none;
     flex-direction: column-reverse;
