@@ -11,6 +11,13 @@ body {
     text-align: center;
     font-family: Helvetica, Arial, sans-serif;
 } 
+
+:root {
+    --strip-bg: rgba(0,0,0,.8);
+    --highlight: 0px 0px 1em #FFF, 0px 0px .5em #FFF;
+    --line: #FFF solid 1px;
+}
+
 /*
 _|    _|                            _|                      
 _|    _|    _|_|      _|_|_|    _|_|_|    _|_|    _|  _|_|  
@@ -19,10 +26,10 @@ _|    _|  _|        _|    _|  _|    _|  _|        _|
 _|    _|    _|_|_|    _|_|_|    _|_|_|    _|_|_|  _|        
 */
 header {
-    background: rgba(0,0,0,.8);
+    background: var(--strip-bg);
     height: 5rem;
     border: none;
-    border-bottom: solid #FFF 1px;
+    border-bottom: var(--line);
     padding: 1rem;
     font-family: Cinzel, serif;
     text-align: center;
@@ -44,7 +51,7 @@ header h2 {
 header hr {
     width: 30rem;
     border: none;
-    border-top: solid 1px #FFF;
+    border-top:  var(--line);
 }
 /*                                     
 _|_|_|                                  
@@ -127,13 +134,13 @@ a:active {
 }
 footer a:hover {
     color: #FFF;
-    text-shadow: 0px 0px 1em #FFF, 0px 0px .5em #FFF;
+    text-shadow: var(--highlight);
 }
 footer {
-    background: rgba(0,0,0,.8);
+    background: var(--strip-bg);
     height: 5rem;
     border: none;
-    border-top: solid #FFF 1px;
+    border-top: var(--line);
     padding: 1rem;
     text-align: center;
     color: #FFF;
@@ -155,7 +162,7 @@ footer li {
     vertical-align: middle;
 }
 footer li:not(:first-child) {
-    border-left: solid #FFF 1px;
+    border-left: var(--line);
 }
 footer li.icons {
     font-size: 1.5rem;
@@ -175,12 +182,12 @@ footer li.icons {
     display: flex;
 }
 .menu:hover p {
-    text-shadow: 0px 0px 1em #FFF, 0px 0px .5em #FFF;
+    text-shadow: var(--highlight);
 }
 .menu li {
     display: table-cell;
     background: rgba(0,0,0,.6);
-    border-left: #FFF solid 1px;
+    border-left: var(--line);
     margin: 0;
     padding: 0;
 }
