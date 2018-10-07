@@ -117,20 +117,6 @@ _|_|_|  _|    _|  _|    _|    _|      _|_|_|_|  _|_|
 _|      _|    _|  _|    _|    _|      _|        _|        
 _|        _|_|      _|_|        _|_|    _|_|_|  _|        
 */
-nav {
-    display: none;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-size: .5rem;
-    margin-top: 5rem;
-    margin-right: 1em;
-    text-shadow: 0 0 2rem black;
-}
-nav a {
-    padding-left: .5rem;
-}
 a:link, a:visited {
     color: #FFF;
     margin: .2rem;
@@ -153,7 +139,7 @@ footer {
     color: #FFF;
 }
 footer ul {
-    width: 50rem;
+    width: calc(10rem * 5);
     margin: 1rem auto;
     padding: 0;
     
@@ -163,19 +149,53 @@ footer li {
     list-style: none;
     width: 10rem;
     height: 3rem;
-    
-    
     font-size: .8em;
     font-variant: small-caps;
     letter-spacing: .3em;
-    
     vertical-align: middle;
 }
 footer li:not(:first-child) {
     border-left: solid #FFF 1px;
 }
-footer li#icons {
+footer li.icons {
     font-size: 1.5rem;
+}
+
+.menu ul {
+    display: none;
+    flex-direction: column-reverse;
+    position: absolute;
+    bottom: calc(4rem);
+    height: calc(3rem * 4);
+    width: 10rem;
+    padding-bottom: calc(2rem + 1px);
+    font-size: 1rem;
+}
+.menu:hover ul, .menu ul:hover {
+    display: flex;
+}
+.menu:hover p {
+    text-shadow: 0px 0px 1em #FFF, 0px 0px .5em #FFF;
+}
+.menu li {
+    display: table-cell;
+    background: rgba(0,0,0,.6);
+    border-left: #FFF solid 1px;
+    margin: 0;
+    padding: 0;
+}
+.menu li a {
+    display: block;
+    margin: .5rem;
+    padding: .5rem 0;
+}
+.menu li a:hover {
+    background: #FFF;
+    color: #333;
+}
+.menu p:after {
+    content: ' ▲';
+    font-size: .8em;
 }
 
 /*

@@ -10,6 +10,9 @@
 #filter {
     background: #000 url('{{ image.url }}') no-repeat center center fixed;
 }
+#menu a[href^="{{ session['album'] }}"] {
+    text-shadow: 0px 0px 1em #FFF, 0px 0px .5em #FFF;
+}
 </style>
 <link rel="stylesheet" href="static/screen.css" />
 <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css" /> 
@@ -18,7 +21,6 @@
 
 <body>
     <div id="filter" ></div>
-    
     
     <header>
         <h1>Grégory Millasseau</h1>
@@ -29,11 +31,10 @@
     <div id="big">
         <a href="index.php">
             <img src="{{ image.url }}" />
-            
         
             <div id="exif">
             {% if image.exif -%}
-                <div style="float:left;">{{ image.exif.Model }} + {{ image.exif.LensModel }}</div><div style="float:right;">{{ image.exif.FocalLength }} − {{ image.exif.ExposureTime  }}s − f/{{ image.exif.FNumber }} − ISO{{ image.exif.ISO }}</div>
+                <div style="float:left;">{{ image.exif.Model }} + {{ image.exif.LensModel }}</div><div style="float:right;">{{ image.exif.FocalLength }} − {{ image.exif.ExposureTime }}s − f/{{ image.exif.FNumber }} − ISO{{ image.exif.ISO }}</div>
             {%- else -%}
                 No EXIF
             {%- endif %}
@@ -45,16 +46,35 @@
     <footer>
         <ul>
             <li><a href="all/">Toutes</a></li>
-            <li><a href="macro/">Macro</a></li>
-            <li><a href="mobile/">Mobile</a></li>
-            <li id="icons">
+            <li class="menu">
+                <p>Albums</p>
+                <ul>
+                    <li><a href="macro/">Macro</a></li>
+                    <li><a href="mobile/">Made with iPhone</a></li>
+                    <li><a href="drops/">Gouttes</a></li>
+                    <li><a href="origami/">Origami</a></li>
+                    <li><a href="bestof/">Best of</a></li>
+                </ul>
+            </li>
+            <li class="menu">
+                <p>Voyages</p>
+                <ul>
+                    <li><a href="mongolia/">Mongolie</a></li>
+                    <li><a href="japan/">Japon</a></li>
+                    <li><a href="copenhagen/">Copenhague</a></li>
+                    <li><a href="polska/">Pologne</a></li>
+                    <li><a href="amsterdam/">Amsterdam</a></li>
+                    <li><a href="stockholm/">Stockholm</a></li>
+                </ul>
+            </li>
+            <li class="icons">
                 <a href="https://www.flickr.com/photos/gregseth/"><span class="fa fa-flickr"></span></a><a href="https://www.instagram.com/gregseth"><span class="fa fa-instagram"></span></a>
             </li>
             <li><a href="{{ image.album }}/{{ image.next }}">
             {%- if image.album == 'all' -%}
-                Aléatoire
+                Aléatoire <span class="fa fa-random"></span>
             {%- else -%}
-                Suivante
+                Suivante <span class="fa fa-caret-right"></span>
             {%- endif -%}
             </a></li>
         </ul>
