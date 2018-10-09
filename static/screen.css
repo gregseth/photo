@@ -5,7 +5,6 @@ html, body {
     height: 100%;
 }
 body {
-    min-width: 900px;
     background: #000;
     margin: 0;
     text-align: center;
@@ -34,14 +33,14 @@ header {
     font-family: Cinzel, serif;
     text-align: center;
     color: #FFF;
-    
 }
 header h1, header h2 {
     margin: 0;
-    padding: 0 0 0 1rem; /* fixes extra space induced by letter-spacing */
+    padding: 0 0 0 2.5vw; /* fixes extra space induced by letter-spacing */
     font-size: 2rem;
     font-weight: normal;
-    letter-spacing: 1em;
+    letter-spacing: 2.5vw;
+    white-space: nowrap;
 }
 header h2 {
     font-size: 1rem;
@@ -52,6 +51,9 @@ header hr {
     width: 30rem;
     border: none;
     border-top:  var(--line);
+}
+header p {
+    display: none;
 }
 /*                                     
 _|_|_|                                  
@@ -197,18 +199,5 @@ footer li.icons .fa {
     font-size: .8em;
 }
 
-/*
-@media screen and (min-width: 1200px) {
-    #big {
-        margin: 50vh auto;
-        transform: translateY(-50%);
-        border: #FFF solid 7px;
-    }
-    .linktext {
-        display: none;
-    }
-    a:hover .linktext {
-        display: inline;
-    }
-}
-*/
+
+

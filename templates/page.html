@@ -14,7 +14,8 @@
     text-shadow: var(--highlight);
 }
 </style>
-<link rel="stylesheet" href="static/screen.css" />
+<link rel="stylesheet" href="static/screen.css" media="screen  and (min-width: 500px)">
+<link rel="stylesheet" href="static/mobile.css" media="screen and (max-width: 500px)" />
 <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css" /> 
 
 </head>
@@ -39,7 +40,6 @@
                 No EXIF
             {%- endif %}
             </div>
-
         </a>
     </div>
     
@@ -70,7 +70,7 @@
             <li class="icons">
                 <a href="https://www.flickr.com/photos/gregseth/"><span class="fa fa-flickr"></span></a><a href="https://www.instagram.com/gregseth"><span class="fa fa-instagram"></span></a>
             </li>
-            <li><a href="{{ image.album }}/{{ image.next }}">
+            <li class="next"><a href="{{ image.album }}/{{ image.next }}">
             {%- if image.album == 'all' -%}
                 Aléatoire <span class="fa fa-random"></span>
             {%- else -%}
