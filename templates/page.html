@@ -18,15 +18,24 @@
 <link rel="stylesheet" href="static/mobile.css" media="screen and (max-width: 500px)" />
 <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css" /> 
 
+<script>
+function toggle_menu() {
+    menu = document.getElementsByTagName('footer')[0];
+    value = menu.style.display;
+    menu.style.display = (value === '' || value === 'none') ? 'block' : 'none';
+}
+</script>
+
 </head>
 
 <body>
     <div id="filter" ></div>
     
     <header>
-        <h1>Grégory Millasseau</h1>
+        <h1>Grégory&nbsp;Millasseau</h1>
         <hr />
-        <h2>photographie</h2>    
+        <h2>photographie</h2> 
+        <p onclick="toggle_menu()"><span class="fa fa-bars"></span></p>   
     </header>
     
     <div id="big">
