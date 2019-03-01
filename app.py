@@ -12,10 +12,12 @@ from config import FLICKR_ALBUMS
 app = Flask(__name__)
 app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde67'
 
+PAGES = ['dof', 'locus', 'gamutmapping']
 
 @app.route('/<album>/<int:image_id>')
 def show_index(album, image_id):
-    print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id), file=sys.stderr)
+    return render_template('blank.html')
+    print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id), file=sys.stderr)
     if album is None:
         album = 'all'
     load_album(album)
@@ -43,8 +45,8 @@ def redirect_random(album='all'):
 @app.route('/<album>/')
 def album(album):
     print('REQUEST ALBUM: '+album, file=sys.stderr)
-    if album == 'dof':
-        return render_template('dof.html')
+    if album in PAGES:
+        return render_template('{}.html'.format(album))
     album = album if album in FLICKR_ALBUMS else 'all'
     return redirect_random(album)
 
