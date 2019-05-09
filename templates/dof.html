@@ -57,7 +57,7 @@ function updateDof() {
     var d = document.getElementById('d').value*1000; // m -> mm
     var c = document.getElementById('c').value;
 
-    var H = f + f*f / (N * c);
+    var H = f*f / (N * c);
     var DoFmin = H*d / (H + (d - f));
     var DoFmax = H*d / (H - (d - f));
     var DoF = DoFmax - DoFmin;
