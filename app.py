@@ -12,50 +12,60 @@ from config import FLICKR_ALBUMS
 app = Flask(__name__)
 app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde67'
 
-PAGES = ['dof', 'locus', 'gamutmapping']
+PAGES = ['dof']
+APPLETS = ['locus', 'gamut']
 
-@app.route('/<album>/<int:image_id>')
-def show_index(album, image_id):
-    return render_template('blank.html')
-    print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id), file=sys.stderr)
-    if album is None:
-        album = 'all'
-    load_album(album)
+#@app.route('/<album>/<int:image_id>')
+#def show_index(album, image_id):
+#    return render_template('blank.html')
+#    print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id), file=sys.stderr)
+#    if album is None:
+#        album = 'all'
+#    load_album(album)
+#
+#    # print(session['photos'], file=sys.stderr)
+#
+#    if image_id not in session['photos']:
+#        image_id = random.choice(session['photos'])
+#
+#    image = {}
+#    image['id'] = image_id
+#    image['next'] = get_next(album, image_id)
+#    image['url'] = get_url(image_id)
+#    image['album'] = album
+#    image['exif'] = get_exif(image_id)
+#    return render_template('page.html', image=image) 
+#
+#def redirect_random(album='all'):
+#    load_album(album)
+#    img_id = random.choice(session['photos'])
+#    #print(img_id)
+#    return redirect('{}/{}'.format(album, img_id))
+#
+#
+#@app.route('/<album>/')
+#def album(album):
+#    print('REQUEST ALBUM: '+album, file=sys.stderr)
+#    if album in PAGES:
+#        return render_template('{}.html'.format(album))
+#    album = album if album in FLICKR_ALBUMS else 'all'
+#    return redirect_random(album)
+@app.route('/<page>')
+def page(page):
+    if page in PAGES:
+        return render_template('{}.html'.format(page))
 
-    # print(session['photos'], file=sys.stderr)
-
-    if image_id not in session['photos']:
-        image_id = random.choice(session['photos'])
-
-    image = {}
-    image['id'] = image_id
-    image['next'] = get_next(album, image_id)
-    image['url'] = get_url(image_id)
-    image['album'] = album
-    image['exif'] = get_exif(image_id)
-    return render_template('page.html', image=image) 
-
-def redirect_random(album='all'):
-    load_album(album)
-    img_id = random.choice(session['photos'])
-    #print(img_id)
-    return redirect('{}/{}'.format(album, img_id))
-
-
-@app.route('/<album>/')
-def album(album):
-    print('REQUEST ALBUM: '+album, file=sys.stderr)
-    if album in PAGES:
-        return render_template('{}.html'.format(album))
-    album = album if album in FLICKR_ALBUMS else 'all'
-    return redirect_random(album)
-
+@app.route('/applet/<name>')
+def applet(applet_name):
+    if applet_name in APPLETS:
+        return render_template('{}.html'.format(applet_name))
+    
 
 @app.errorhandler(404)
 @app.route('/')
 def default(error=None):
-    return redirect_random()
-
+    return render_template('blank.html')
+#    return redirect_random()
 
 
 if __name__ == '__main__':
