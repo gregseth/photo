@@ -1,6 +1,6 @@
 from flask import session
 
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, urlencode
 from urllib.request import urlopen
 
 import sys
@@ -9,45 +9,44 @@ import random
 
 from config import *
 
-YQ_URL = "https://query.yahooapis.com/v1/public/yql?format=json&env={}&q=". \
-    format(quote_plus("store://datatables.org/alltableswithkeys"))
+FLICKR_API_ENDPOINT = 'https://www.flickr.com/services/rest/?'
+QUERY = {
+    'api_key': FLICKR_API_KEY,
+    'user_id': FLICKR_ID,
+    'format': 'json',
+    'nojsoncallback': 1
+#    'method': # mandatory
+}
 
 def get_json(query):
-    flickr_query = quote_plus(query)
-    with urlopen(YQ_URL + flickr_query) as data:
-        return json.loads(data.read().decode())
+    """ :type query: dict representing the query string """
+    flickr_query = urlencode(query)
+    with urlopen(FLICKR_API_ENDPOINT + flickr_query) as rawdata:
+        data = json.loads(rawdata.read().decode())
+        if data['stat'] == 'ok':
+            return data
+        else:
+            print(data['message'])
 
-def get_json_result(fields, table, condition, debug=False):
-    query = "SELECT {} FROM {} WHERE api_key='{}' AND {}". \
-        format(fields, table, FLICKR_API_KEY, condition)
+def get_user_photos():
+    result = get_json({
+        **QUERY,
+        'method': 'flickr.people.getPublicPhotos',
+        'extras': 'url_o',
+        'per_page': 500 # TODO get more
+    })
 
-    return get_json(query)
-
-def get_user_photos(user_id):
-    result = get_json_result(
-        "*", 
-        "flickr.people.publicphotos(0, 5000)", 
-        "user_id='{}' AND extras='url_o'".format(user_id)
-    )
-
-    image_ids = []
-    for item in result['query']['results']['photo']:
-        image_ids.append(item['id'])
-
-    return image_ids
+    return [p['id'] for p in result['photos']['photo']]
 
 def get_album_photos(album_id):
-    result = get_json_result(
-        "id", 
-        "flickr.photosets.photos(0, 5000)", 
-        "photoset_id='{}' ORDER BY id DESC".format(album_id)
-    )
+    result = get_json({
+        **QUERY,
+        'method': 'flickr.photosets.getPhotos',
+        'photoset_id': album_id,
+        'per_page': 500 # TODO get more
+    })
 
-    image_ids = []
-    for item in result['query']['results']['photo']:
-        image_ids.append(int(item['id']))
-
-    return image_ids
+    return [p['id'] for p in result['photoset']['photo']]
 
 def get_exif(photo_id):
     fields = [
@@ -63,18 +62,16 @@ def get_exif(photo_id):
     # initializing all tags values to '?'
     exif = dict(zip(fields, ['?']*len(fields)))
 
-    result = get_json_result(
-        "exif.tag, exif.raw", 
-        "flickr.photos.exif", 
-        "photo_id='{}' AND exif.tag IN ('{}')".
-            format(photo_id, "', '".join(fields))
-    )
-    # print(result, file=sys.stderr)
+    result = get_json({
+        **QUERY,
+        'method': 'flickr.photos.getExif',
+        'photo_id': photo_id
+    })
 
     # filling with retrieved data
     try:
-        for item in result['query']['results']['photo']:
-            exif[item['exif']['tag']] = item['exif']['raw']
+        for item in result['photo']['exif']:
+            exif[item['tag']] = item['raw']['_content']
         
         # treating special cases
         if exif['LensModel'] == '?' and exif['Lens'] != '?':
@@ -86,13 +83,13 @@ def get_exif(photo_id):
 
 
 def get_url(photo_id):
-    result = get_json_result(
-        "source", 
-        "flickr.photos.sizes", 
-        "photo_id='{}' AND label='Original'".format(photo_id)
-    )
-    # print(result, file=sys.stderr)
-    return result['query']['results']['size']['source']
+    result = get_json({
+        **QUERY,
+        'method': 'flickr.photos.getSizes',
+        'photo_id': photo_id
+    })
+    
+    return [p['source'] for p in result['sizes']['size'] if p['label'] == 'Original'][0]
 
 
 def load_album(album):  
