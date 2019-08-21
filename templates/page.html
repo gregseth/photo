@@ -6,6 +6,7 @@
     
     <title>Grégory Millasseau − Photos</title>
    
+    <script src="https://kit.fontawesome.com/6d65f28265.js"></script>
 <style>
 #filter {
     background: #000 url('{{ image.url }}') no-repeat center center fixed;
@@ -16,7 +17,6 @@
 </style>
 <link rel="stylesheet" href="static/screen.css" media="screen and (min-width: 500px)" />
 <link rel="stylesheet" href="static/mobile.css" media="screen and (max-width: 500px)" />
-<link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css" /> 
 
 <script>
 function toggle_menu() {
@@ -77,7 +77,7 @@ function toggle_menu() {
                 </ul>
             </li>
             <li class="icons">
-                <a href="https://www.flickr.com/photos/gregseth/"><span class="fa fa-flickr"></span></a><a href="https://www.instagram.com/gregseth"><span class="fa fa-instagram"></span></a>
+                <a href="https://www.flickr.com/photos/gregseth/"><span class="fab fa-flickr"></span></a><a href="https://www.instagram.com/gregseth"><span class="fab fa-instagram"></span></a>
             </li>
             <li class="next"><a href="{{ image.album }}/{{ image.next }}">
             {%- if image.album == 'all' -%}
