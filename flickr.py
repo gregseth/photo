@@ -29,21 +29,29 @@ def get_json(query):
             print(data['message'])
 
 def get_user_photos():
-    result = get_json({
-        **QUERY,
-        'method': 'flickr.people.getPublicPhotos',
-        'extras': 'url_o',
-        'per_page': 500 # TODO get more
-    })
+    page = 1
+    ids = []
+    while "page count not reached":
 
-    return [p['id'] for p in result['photos']['photo']]
+        result = get_json({
+            **QUERY,
+            'method': 'flickr.people.getPublicPhotos',
+            'page': page,
+            'per_page': 500
+        })
+        ids += [p['id'] for p in result['photos']['photo']]
+        page += 1
+        if page > result['photos']['pages']:
+            break
+    
+    return ids
 
 def get_album_photos(album_id):
     result = get_json({
         **QUERY,
         'method': 'flickr.photosets.getPhotos',
         'photoset_id': album_id,
-        'per_page': 500 # TODO get more
+        'per_page': 500
     })
 
     return [p['id'] for p in result['photoset']['photo']]
