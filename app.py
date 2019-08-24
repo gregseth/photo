@@ -21,7 +21,7 @@ def redirect_random(album='all'):
     #print(img_id)
     return redirect('{}/{}'.format(album, img_id))
 
-@app.route('/<album>/<int:image_id>')
+@app.route('/<album>/<image_id>')
 def show_index(album, image_id):
     print('REQUEST ALBUM: {} // REQEST IMAGE: {}'.format(album, image_id), file=sys.stderr)
     if album is None:
