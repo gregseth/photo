@@ -28,10 +28,11 @@ def show_index(album, image_id):
         album = 'all'
     load_album(album)
 
-    # print(session['photos'], file=sys.stderr)
+    print(session['photos'], file=sys.stderr)
 
     if image_id not in session['photos']:
         image_id = random.choice(session['photos'])
+        return redirect('{}/{}'.format(album, image_id))
 
     image = {
         'id': image_id,
