@@ -33,12 +33,13 @@ def show_index(album, image_id):
     if image_id not in session['photos']:
         image_id = random.choice(session['photos'])
 
-    image = {}
-    image['id'] = image_id
-    image['next'] = get_next(album, image_id)
-    image['url'] = get_url(image_id)
-    image['album'] = album
-    image['exif'] = get_exif(image_id)
+    image = {
+        'id': image_id,
+        'next': get_next(album, image_id),
+        'url': get_url(image_id),
+        'album': album,
+        'exif': get_exif(image_id)
+    }
     return render_template('page.html', image=image) 
 
 @app.route('/<album>/')
