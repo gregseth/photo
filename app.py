@@ -10,29 +10,11 @@ import sys
 import random
 
 from flickr import load_album, get_next, get_url, get_exif
-from config import FLICKR_ALBUMS
+from config import FLICKR_ALBUMS, PAGES, APPLETS
 
 app = Flask(__name__)
 app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde67'
 
-PAGES = ['dof']
-APPLETS = {
-    'locus': {
-        'file': 'locus.swf',
-        'width': 1050,
-        'height': 710
-    }, 
-    'gamut': {
-        'file': 'gamutmapping.swf',
-        'width': 960,
-        'height': 510
-    },
-    'chromaticity': {
-        'file': 'chromaticity.swf',
-        'width': 1000,
-        'height': 720
-    }
-}
 
 @app.route('/<album>/<int:image_id>')
 def show_index(album, image_id):

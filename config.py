@@ -16,3 +16,22 @@ FLICKR_ALBUMS = {
     'stockholm'  : 72157621644149273
     
 }
+
+PAGES = ['dof']
+APPLETS = {
+    'locus': {
+        'file': 'locus.swf',
+        'width': 1050,
+        'height': 710
+    }, 
+    'gamut': {
+        'file': 'gamutmapping.swf',
+        'width': 960,
+        'height': 510
+    },
+    'chromaticity': {
+        'file': 'chromaticity.swf',
+        'width': 1000,
+        'height': 720
+    }
+}
