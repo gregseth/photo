@@ -7,7 +7,7 @@ import sys
 import json
 import random
 
-from config import *
+from config import FLICKR_ALBUMS, FLICKR_API_KEY, FLICKR_ID
 
 FLICKR_API_ENDPOINT = 'https://www.flickr.com/services/rest/?'
 QUERY = {
