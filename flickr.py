@@ -4,6 +4,7 @@ from urllib.parse import quote_plus, urlencode
 from urllib.request import urlopen
 
 import sys
+import os
 import json
 import random
 
@@ -101,7 +102,7 @@ def get_url(photo_id):
 
 
 def load_album(album):  
-    if not 'album' in session or session['album'] != album:
+    if not 'album' in session or session['album'] != album or os.path.isfile('NO_SESSION'):
         session['album'] = album
 
         print('ALBUM ID: {}'.format(album), file=sys.stderr)
