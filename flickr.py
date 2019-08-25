@@ -4,7 +4,6 @@ from urllib.parse import quote_plus, urlencode
 from urllib.request import urlopen
 
 import sys
-import os
 import json
 import random
 
@@ -97,24 +96,20 @@ def get_url(photo_id):
         'method': 'flickr.photos.getSizes',
         'photo_id': photo_id
     })
+
+    #print(result)
     
     return [p['source'] for p in result['sizes']['size'] if p['label'] == 'Original'][0]
 
 
-def load_album(album):  
-    if not 'album' in session or session['album'] != album or os.path.isfile('NO_SESSION'):
-        session['album'] = album
+def load_album(album):
+    picture_list = []
 
-        print('ALBUM ID: {}'.format(album), file=sys.stderr)
-        if album == 'all' or not album in FLICKR_ALBUMS:
-            with open('static/flickr.lst') as lst:
-                session['photos'] = [int(l.rstrip('\n')) for l in lst]
-        else:
-            session['photos'] = get_album_photos(FLICKR_ALBUMS[album])
+    print('LOADING ALBUM: {}'.format(album), file=sys.stderr)
+    if album == 'all' or not album in FLICKR_ALBUMS:
+        with open('static/flickr.lst') as lst:
+            picture_list = [int(l.rstrip('\n')) for l in lst]
+    else:
+        picture_list = [int(id) for id in get_album_photos(FLICKR_ALBUMS[album])]
 
-
-def get_next(album, image_id):
-    piclist = session['photos']
-    if album == 'all':
-        return random.choice(piclist)
-    return piclist[(piclist.index(image_id)+1) % len(piclist)]
+    return sorted(picture_list, key=int, reverse=True)

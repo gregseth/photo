@@ -39,7 +39,7 @@ function toggle_menu() {
     </header>
     
     <div id="big">
-        <a href="{{ image.album }}/{{ image.next }}">
+        <a href="/photo/{{ image.next }}">
             <img src="{{ image.url }}" />
         
             <div id="exif">
@@ -54,38 +54,37 @@ function toggle_menu() {
     
     <footer>
         <ul>
-            <li><a href="all/">Toutes</a></li>
+            <li class="menu">
+                <p>Photos</p>
+                <ul>
+                    <li><a href="/">Récentes</i></a></li>
+                    <li><a href="/album/bestof">Best of</a></li>
+                    <li><a href="/random">Aléatoire <i class="fas fa-random"></i></a></li>
+                </ul>
             <li class="menu">
                 <p>Albums</p>
                 <ul>
-                    <li><a href="macro/">Macro</a></li>
-                    <li><a href="mobile/">Made with iPhone</a></li>
-                    <li><a href="drops/">Gouttes</a></li>
-                    <li><a href="origami/">Origami</a></li>
-                    <li><a href="bestof/">Best of</a></li>
+                    <li><a href="/album/macro">Macro</a></li>
+                    <li><a href="/album/mobile">Made with iPhone</a></li>
+                    <li><a href="/album/drops">Gouttes</a></li>
+                    <li><a href="/album/origami">Origami</a></li>
                 </ul>
             </li>
             <li class="menu">
                 <p>Voyages</p>
                 <ul>
-                    <li><a href="mongolia/">Mongolie</a></li>
-                    <li><a href="japan/">Japon</a></li>
-                    <li><a href="copenhagen/">Copenhague</a></li>
-                    <li><a href="polska/">Pologne</a></li>
-                    <li><a href="amsterdam/">Amsterdam</a></li>
-                    <li><a href="stockholm/">Stockholm</a></li>
+                    <li><a href="/album/mongolia">Mongolie</a></li>
+                    <li><a href="/album/japan">Japon</a></li>
+                    <li><a href="/album/copenhagen">Copenhague</a></li>
+                    <li><a href="/album/polska">Pologne</a></li>
+                    <li><a href="/album/amsterdam">Amsterdam</a></li>
+                    <li><a href="/album/stockholm">Stockholm</a></li>
                 </ul>
             </li>
             <li class="icons">
-                <a href="https://www.flickr.com/photos/gregseth/"><span class="fab fa-flickr"></span></a><a href="https://www.instagram.com/gregseth"><span class="fab fa-instagram"></span></a>
+                <a href="https://www.flickr.com/photos/gregseth/"><i class="fab fa-flickr"></i></a><a href="https://www.instagram.com/gregseth"><i class="fab fa-instagram"></i></a>
             </li>
-            <li class="next"><a href="{{ image.album }}/{{ image.next }}">
-            {%- if image.album == 'all' -%}
-                Aléatoire <span class="fa fa-random"></span>
-            {%- else -%}
-                Suivante <span class="fa fa-caret-right"></span>
-            {%- endif -%}
-            </a></li>
+            <li class="next"><a href="/photo/{{ image.next }}">Suivante <i class="fas fa-caret-right"></i></a></li>
         </ul>
     </footer>
 </body>
