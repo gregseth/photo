@@ -74,6 +74,7 @@ def applet(name):
 @app.errorhandler(404)
 @app.route('/')
 def default(error=None):
+    session['album'] = 'all'
     picture_list = load_album('all')
     return redirect('photo/{}'.format(picture_list[0]))
 
