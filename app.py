@@ -17,9 +17,9 @@ app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde
 
 def redirect_random(album='all'):
     load_album(album)
-    img_id = random.choice(session['photos'])
-    #print(img_id)
-    return redirect('{}/{}'.format(album, img_id))
+    image_id = random.choice(session['photos'])
+    #print(image_id)
+    return redirect('{}/{}'.format(album, image_id))
 
 @app.route('/<album>/<image_id>')
 def show_index(album, image_id):
