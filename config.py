@@ -1,21 +1,27 @@
+import itertools
+
 FLICKR_ID = "7558628@N02"
 FLICKR_API_KEY = "117a79cd3ae4d8b0533ac65fa38aec83"
 
-FLICKR_ALBUMS = { 
-    'macro'      : 72157684245616056,
-    'mobile'     : 72157690781846976,
-    'drops'      : 72157684095730415,
-    'origami'    : 72157634866476750,
-    'bestof'     : 72157673653825028,
-    
-    'mongolia'   : 72157671913840076,
-    'japan'      : 72157667973587035,
-    'copenhagen' : 72157627209760762,
-    'polska'     : 72157627100532140,
-    'amsterdam'  : 72157624521847393,
-    'stockholm'  : 72157621644149273
-    
+MENU_ITEMS = { 
+    'albums': [
+        { 'id': 72157684245616056, 'title': 'Macro',            'slug': 'macro'     },
+        { 'id': 72157690781846976, 'title': 'Made with iPhone', 'slug': 'mobile'    },
+        { 'id': 72157684095730415, 'title': 'Gouttes',          'slug': 'gouttes'   },
+        { 'id': 72157634866476750, 'title': 'Origami',          'slug': 'origami'   },
+        { 'id': 72157673653825028, 'title': 'Best of',          'slug': 'bestof'    }
+    ],
+    'voyages': [
+        { 'id': 72157671913840076, 'title': 'Mongolie',         'slug': 'mongolia'  }, 
+        { 'id': 72157667973587035, 'title': 'Japon',            'slug': 'japan'     },
+        { 'id': 72157627209760762, 'title': 'Copenhague',       'slug': 'copenhagen'},
+        { 'id': 72157627100532140, 'title': 'Pologne',          'slug': 'polska'    },
+        { 'id': 72157624521847393, 'title': 'Amsterdam',        'slug': 'amsterdam' }, 
+        { 'id': 72157621644149273, 'title': 'Stockholm',        'slug': 'stockholm' }
+    ]
 }
+# flat dictionary of slug/id pairs
+FLICKR_ALBUMS = dict([(x['slug'], x) for x in itertools.chain(*MENU_ITEMS.values())])
 
 PAGES = ['dof']
 APPLETS = {

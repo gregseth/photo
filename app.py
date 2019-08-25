@@ -10,7 +10,7 @@ import sys
 import random
 
 from flickr import load_album, get_url, get_exif
-from config import FLICKR_ALBUMS, PAGES, APPLETS
+from config import MENU_ITEMS, FLICKR_ALBUMS, PAGES, APPLETS
 
 app = Flask(__name__)
 app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde67'
@@ -48,11 +48,13 @@ def show_index(image_id):
         'url': get_url(image_id),
         'exif': get_exif(image_id)
     }
-    return render_template('page.html', image=image) 
+    title = 'photographie' if album == 'all' else FLICKR_ALBUMS[album]['title']
+    return render_template('page.html', image=image, menus=MENU_ITEMS, title=title) 
 
 @app.route('/album/<album>')
 def album(album):
     print('REQUEST ALBUM: '+album)
+
     if album in FLICKR_ALBUMS:
         session['album'] = album
         return redirect_random(album)

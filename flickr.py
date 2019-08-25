@@ -110,6 +110,6 @@ def load_album(album):
         with open('static/flickr.lst') as lst:
             picture_list = [int(l.rstrip('\n')) for l in lst]
     else:
-        picture_list = [int(id) for id in get_album_photos(FLICKR_ALBUMS[album])]
+        picture_list = [int(id) for id in get_album_photos(FLICKR_ALBUMS[album]['id'])]
 
     return sorted(picture_list, key=int, reverse=True)

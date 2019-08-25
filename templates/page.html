@@ -34,7 +34,7 @@ function toggle_menu() {
     <header>
         <h1>Grégory&nbsp;Millasseau</h1>
         <hr />
-        <h2>photographie</h2> 
+        <h2>{{ title }}</h2> 
         <p onclick="toggle_menu()"><span class="fa fa-bars"></span></p>   
     </header>
     
@@ -58,29 +58,19 @@ function toggle_menu() {
                 <p>Photos</p>
                 <ul>
                     <li><a href="/">Récentes</i></a></li>
-                    <li><a href="/album/bestof">Best of</a></li>
                     <li><a href="/random">Aléatoire <i class="fas fa-random"></i></a></li>
                 </ul>
+            </li>
+            {% for cat, albums in menus.items() -%}
             <li class="menu">
-                <p>Albums</p>
+                <p>{{ cat.capitalize() }}</p>
                 <ul>
-                    <li><a href="/album/macro">Macro</a></li>
-                    <li><a href="/album/mobile">Made with iPhone</a></li>
-                    <li><a href="/album/drops">Gouttes</a></li>
-                    <li><a href="/album/origami">Origami</a></li>
+                    {% for album in albums -%}
+                    <li><a href="/album/{{ album.slug }}">{{ album.title }}</a></li>
+                    {% endfor %}
                 </ul>
             </li>
-            <li class="menu">
-                <p>Voyages</p>
-                <ul>
-                    <li><a href="/album/mongolia">Mongolie</a></li>
-                    <li><a href="/album/japan">Japon</a></li>
-                    <li><a href="/album/copenhagen">Copenhague</a></li>
-                    <li><a href="/album/polska">Pologne</a></li>
-                    <li><a href="/album/amsterdam">Amsterdam</a></li>
-                    <li><a href="/album/stockholm">Stockholm</a></li>
-                </ul>
-            </li>
+            {%- endfor %}
             <li class="icons">
                 <a href="https://www.flickr.com/photos/gregseth/"><i class="fab fa-flickr"></i></a><a href="https://www.instagram.com/gregseth"><i class="fab fa-instagram"></i></a>
             </li>
