@@ -26,7 +26,7 @@ def get_json(query):
         if data['stat'] == 'ok':
             return data
         else:
-            print(data['message'])
+            print('ERR: ' + data['message'])
 
 def get_user_photos():
     page = 1
@@ -97,8 +97,6 @@ def get_url(photo_id):
         'photo_id': photo_id
     })
 
-    #print(result)
-    
     return [p['source'] for p in result['sizes']['size'] if p['label'] == 'Original'][0]
 
 

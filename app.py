@@ -33,8 +33,6 @@ def show_index(image_id):
     picture_list = load_album(album)
     print('LOADED ALBUM: {} = {}'.format(album, picture_list))
 
-    #print(picture_list)
-
     if image_id not in picture_list:
         print('ERR: image {} not in session album {}.'.format(image_id, session['album']))
         image_id = random.choice(picture_list)
