@@ -9,6 +9,7 @@ MENU_ITEMS = {
         { 'id': 72157690781846976, 'title': 'Made with iPhone', 'slug': 'mobile'    },
         { 'id': 72157684095730415, 'title': 'Gouttes',          'slug': 'gouttes'   },
         { 'id': 72157634866476750, 'title': 'Origami',          'slug': 'origami'   },
+        { 'id': 72157710589315476, 'title': 'Paysages urbains', 'slug': 'urban'     },
         { 'id': 72157673653825028, 'title': 'Best of',          'slug': 'bestof'    }
     ],
     'voyages': [
