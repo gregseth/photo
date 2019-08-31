@@ -28,6 +28,12 @@ def get_json(query):
         else:
             print('ERR: ' + data['message'])
 
+def sort_photos(photo_list, key='datetaken', reverse=True):
+    return sorted(photo_list, key=lambda p : p[key], reverse=reverse)
+
+def id_list(photo_list):
+    return [int(p['id']) for p in photo_list]
+
 def get_user_photos():
     page = 1
     ids = []
