@@ -36,31 +36,32 @@ def id_list(photo_list):
 
 def get_user_photos():
     page = 1
-    ids = []
+    photos = []
     while "page count not reached":
-
         result = get_json({
             **QUERY,
             'method': 'flickr.people.getPublicPhotos',
             'page': page,
-            'per_page': 500
+            'per_page': 500,
+            'extras': ','.join(['date_taken'])
         })
-        ids += [p['id'] for p in result['photos']['photo']]
+        photos += result['photos']['photo']
         page += 1
         if page > result['photos']['pages']:
             break
     
-    return ids
+    return id_list(sort_photos(photos))
 
 def get_album_photos(album_id):
     result = get_json({
         **QUERY,
         'method': 'flickr.photosets.getPhotos',
         'photoset_id': album_id,
-        'per_page': 500
+        'per_page': 500,
+        'extras': ','.join(['date_taken'])
     })
 
-    return [p['id'] for p in result['photoset']['photo']]
+    return id_list(sort_photos(result['photoset']['photo']))
 
 def get_exif(photo_id):
     fields = [
@@ -114,6 +115,6 @@ def load_album(album):
         with open('static/flickr.lst') as lst:
             picture_list = [int(l.rstrip('\n')) for l in lst]
     else:
-        picture_list = [int(id) for id in get_album_photos(FLICKR_ALBUMS[album]['id'])]
+        picture_list = get_album_photos(FLICKR_ALBUMS[album]['id'])
 
-    return sorted(picture_list, key=int, reverse=True)
+    return picture_list
