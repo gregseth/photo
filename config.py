@@ -13,7 +13,7 @@ MENU_ITEMS = {
         { 'id': 72157673653825028, 'title': 'Best of',          'slug': 'bestof'    }
     ],
     'voyages': [
-        { 'id': 72157671913840076, 'title': 'Mongolie',         'slug': 'mongolia'  }, 
+        { 'id': 72157710618231867, 'title': 'Saint Petersbourg','slug': 'stpetersbourg' },
         { 'id': 72157667973587035, 'title': 'Japon',            'slug': 'japan'     },
         { 'id': 72157627209760762, 'title': 'Copenhague',       'slug': 'copenhagen'},
         { 'id': 72157627100532140, 'title': 'Pologne',          'slug': 'polska'    },
