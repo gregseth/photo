@@ -38,19 +38,9 @@ function toggle_menu() {
         <p onclick="toggle_menu()"><span class="fa fa-bars"></span></p>   
     </header>
     
-    <div id="big">
-        <a href="/photo/{{ image.next }}">
-            <img src="{{ image.url }}" />
-        
-            <div id="exif">
-            {% if image.exif -%}
-                <div style="float:left;">{{ image.exif.Model }} + {{ image.exif.LensModel }}</div><div style="float:right;">{{ image.exif.FocalLength }} − {{ image.exif.ExposureTime }}s − f/{{ image.exif.FNumber }} − ISO{{ image.exif.ISO }}</div>
-            {%- else -%}
-                No EXIF
-            {%- endif %}
-            </div>
-        </a>
-    </div>
+    {% block body %}
+    <div>Nothing to see here.</div>
+    {% endblock %}
     
     <footer>
         <ul>

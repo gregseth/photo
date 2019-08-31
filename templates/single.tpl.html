@@ -1,0 +1,16 @@
+{% extends 'layout.tpl.html' %}
+{% block body %}
+<div id="big">
+    <a href="/photo/{{ image.next }}">
+        <img src="{{ image.url }}" />
+    
+        <div id="exif">
+        {% if image.exif -%}
+            <div style="float:left;">{{ image.exif.Model }} + {{ image.exif.LensModel }}</div><div style="float:right;">{{ image.exif.FocalLength }} − {{ image.exif.ExposureTime }}s − f/{{ image.exif.FNumber }} − ISO{{ image.exif.ISO }}</div>
+        {%- else -%}
+            No EXIF
+        {%- endif %}
+        </div>
+    </a>
+</div>
+{% endblock %}

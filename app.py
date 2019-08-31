@@ -47,7 +47,7 @@ def show_index(image_id):
         'exif': get_exif(image_id)
     }
     title = 'photographie' if album == 'all' else FLICKR_ALBUMS[album]['title']
-    return render_template('page.html', image=image, menus=MENU_ITEMS, title=title) 
+    return render_template('single.tpl.html', image=image, menus=MENU_ITEMS, title=title) 
 
 @app.route('/album/<album>')
 def album(album):
@@ -67,7 +67,7 @@ def page(page):
 @app.route('/applet/<name>')
 def applet(name):
     if name in APPLETS:
-        return render_template('applet.html', applet=APPLETS[name])
+        return render_template('applet.tpl.html', applet=APPLETS[name])
     abort(404)
 
 
