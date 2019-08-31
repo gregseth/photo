@@ -118,3 +118,7 @@ def load_album(album):
         picture_list = get_album_photos(FLICKR_ALBUMS[album]['id'])
 
     return picture_list
+
+
+if __name__ == '__main__':
+    print('\n'.join(map(str, get_user_photos())))
