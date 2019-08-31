@@ -14,11 +14,12 @@ MENU_ITEMS = {
     ],
     'voyages': [
         { 'id': 72157710618231867, 'title': 'Saint Petersbourg','slug': 'stpetersbourg' },
-        { 'id': 72157667973587035, 'title': 'Japon',            'slug': 'japan'     },
-        { 'id': 72157627209760762, 'title': 'Copenhague',       'slug': 'copenhagen'},
-        { 'id': 72157627100532140, 'title': 'Pologne',          'slug': 'polska'    },
-        { 'id': 72157624521847393, 'title': 'Amsterdam',        'slug': 'amsterdam' }, 
-        { 'id': 72157621644149273, 'title': 'Stockholm',        'slug': 'stockholm' }
+        { 'id': 72157671913840076, 'title': 'Mongolie',         'slug': 'mongolie'      }, 
+        { 'id': 72157667973587035, 'title': 'Japon',            'slug': 'japon'         },
+        { 'id': 72157627209760762, 'title': 'Copenhague',       'slug': 'copenhague'    },
+        { 'id': 72157627100532140, 'title': 'Pologne',          'slug': 'pologne'        },
+        { 'id': 72157624521847393, 'title': 'Amsterdam',        'slug': 'amsterdam'     }, 
+        { 'id': 72157621644149273, 'title': 'Stockholm',        'slug': 'stockholm'     }
     ]
 }
 # flat dictionary of slug/id pairs
