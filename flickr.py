@@ -61,7 +61,7 @@ def get_album_photos(album_id):
         'extras': ','.join(['date_taken'])
     })
 
-    return id_list(sort_photos(result['photoset']['photo']))
+    return sort_photos(result['photoset']['photo'])
 
 def get_exif(photo_id):
     fields = [
@@ -115,7 +115,7 @@ def load_album(album):
         with open('static/flickr.lst') as lst:
             picture_list = [int(l.rstrip('\n')) for l in lst]
     else:
-        picture_list = get_album_photos(FLICKR_ALBUMS[album]['id'])
+        picture_list = id_list(get_album_photos(FLICKR_ALBUMS[album]['id']))
 
     return picture_list
 
