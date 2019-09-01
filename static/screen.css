@@ -15,6 +15,7 @@ body {
     --strip-bg: rgba(0,0,0,.8);
     --highlight: 0px 0px 1em #FFF, 0px 0px .5em #FFF;
     --line: #FFF solid 1px;
+    --image-border: #FFF solid 5px;
 }
 
 /*
@@ -86,8 +87,8 @@ _|          _|_|_|    _|_|_|    _|_|_|
 #big img {
     max-width: calc(90vw - 10px);
     max-height: calc(90vh - 14rem - 12px);
-    border: #FFF solid 5px;
-    box-shadow: 0px 0px 8rem black;
+    border: var(--image-border);
+    box-shadow: 0px 0px 8rem #000;
 }
 #big a:hover #exif {
     display: block;
