@@ -67,7 +67,9 @@ function toggle_menu() {
             <li class="icons">
                 <a href="https://www.flickr.com/photos/gregseth/"><i class="fab fa-flickr"></i></a><a href="https://www.instagram.com/gregseth"><i class="fab fa-instagram"></i></a>
             </li>
+            {% if image.next -%}
             <li class="next"><a href="/photo/{{ image.next }}">Suivante <i class="fas fa-caret-right"></i></a></li>
+            {%- endif %}
         </ul>
     </nav>
 </body>
