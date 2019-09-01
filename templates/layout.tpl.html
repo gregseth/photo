@@ -39,11 +39,13 @@ function toggle_menu() {
         <p onclick="toggle_menu()"><span class="fa fa-bars"></span></p>   
     </header>
     
+    <section id="content">
     {% block body %}
     <div>Nothing to see here.</div>
     {% endblock %}
+    </section>
     
-    <footer>
+    <nav>
         <ul>
             <li class="menu">
                 <p>Photos</p>
@@ -67,6 +69,6 @@ function toggle_menu() {
             </li>
             <li class="next"><a href="/photo/{{ image.next }}">Suivante <i class="fas fa-caret-right"></i></a></li>
         </ul>
-    </footer>
+    </nav>
 </body>
 </html>
