@@ -9,6 +9,7 @@ import random
 
 from config import FLICKR_ALBUMS, FLICKR_API_KEY, FLICKR_ID
 
+FLICKR_URL_TEMPLATE = 'https://farm{farm}.staticflickr.com/{server}/{id}_{secret}_{size}.jpg'
 FLICKR_API_ENDPOINT = 'https://www.flickr.com/services/rest/?'
 QUERY = {
     'api_key': FLICKR_API_KEY,

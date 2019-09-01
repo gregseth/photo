@@ -93,6 +93,31 @@ _|          _|_|_|    _|_|_|    _|_|_|
 #big a:hover #exif {
     display: block;
 }
+#gallery {
+    max-height: 100%;
+    overflow: scroll;
+}
+#gallery ul {
+    width: 80%;
+    list-style: none;
+    margin: 5rem auto;
+    padding: 0;
+}
+#gallery li {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 3rem;
+}
+#gallery img {
+    border: var(--image-border );
+    box-shadow: 0px 0px 1rem #000;
+}
+#gallery img:hover {
+    box-shadow: 0px 0px 1rem #FFF;
+}
+
+
 #exif {
     display: none;
     background:  rgba(0,0,0,.4);

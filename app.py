@@ -9,7 +9,7 @@ from flask import abort
 import sys
 import random
 
-from flickr import load_album, get_url, get_exif
+from flickr import load_album, get_url, get_exif, get_album_photos, FLICKR_URL_TEMPLATE
 from config import MENU_ITEMS, FLICKR_ALBUMS, PAGES, APPLETS
 
 app = Flask(__name__)
@@ -55,7 +55,24 @@ def album(album):
 
     if album in FLICKR_ALBUMS:
         session['album'] = album
-        return redirect_random(album)
+        photos = []
+        album_photos = get_album_photos(FLICKR_ALBUMS[album]['id'])
+        
+        background_photo = random.choice(album_photos)
+        background_photo['size'] = 'b'
+        background = {
+            'url': FLICKR_URL_TEMPLATE.format(**background_photo),
+            'next': None
+        }
+
+        for i in album_photos:
+            i['size'] = 'q'
+            photos.append({
+                'id': i['id'],
+                'thumb': FLICKR_URL_TEMPLATE.format(**i)
+            })
+
+        return render_template('gallery.tpl.html', image=background, photos=photos, menus=MENU_ITEMS, title=FLICKR_ALBUMS[album]['title'])
     abort(404)
 
 @app.route('/<page>')

@@ -1,0 +1,10 @@
+{% extends 'layout.tpl.html' %}
+{% block body %}
+<div id="gallery">
+    <ul>
+    {% for p in photos -%}
+        <li><a href="/photo/{{p.id}}"><img src="{{p.thumb}}"/></a></li>
+    {%- endfor %}
+    </ul>
+</div>
+{% endblock %}
