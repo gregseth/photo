@@ -204,6 +204,7 @@ nav li.icons .fa {
 .menu li {
     display: table-cell;
     height: fit-content;
+    height: -moz-fit-content;
     background: rgba(0,0,0,.6);
     border-left: var(--line);
     margin: 0;
