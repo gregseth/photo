@@ -95,7 +95,7 @@ _|          _|_|_|    _|_|_|    _|_|_|
 }
 #gallery {
     max-height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 #gallery ul {
     width: 80%;
