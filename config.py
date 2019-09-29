@@ -28,16 +28,19 @@ FLICKR_ALBUMS = dict([(x['slug'], x) for x in itertools.chain(*MENU_ITEMS.values
 PAGES = ['dof']
 APPLETS = {
     'locus': {
+        'title': 'Locus',
         'file': 'locus.swf',
         'width': 1050,
         'height': 710
     }, 
     'gamut': {
+        'title': 'Gamut mapping',
         'file': 'gamutmapping.swf',
         'width': 960,
         'height': 510
     },
     'chromaticity': {
+        'title': 'Chromaticity diagram',
         'file': 'chromaticity.swf',
         'width': 1000,
         'height': 720
