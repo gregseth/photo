@@ -44,14 +44,14 @@ def get_user_photos():
             'method': 'flickr.people.getPublicPhotos',
             'page': page,
             'per_page': 500,
-            'extras': ','.join(['date_taken'])
+            'extras': ','.join(['date_upload'])
         })
         photos += result['photos']['photo']
         page += 1
         if page > result['photos']['pages']:
             break
     
-    return id_list(sort_photos(photos))
+    return id_list(sort_photos(photos, key='dateupload'))
 
 def get_album_photos(album_id):
     result = get_json({
