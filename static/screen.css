@@ -195,10 +195,10 @@ nav li.icons .fa {
     padding-bottom: calc(2rem + 1px);
     font-size: 1rem;
 }
-.menu:hover ul, .menu ul:hover, .menu:active ul, .menu ul:active {
+.menu:hover ul, .menu ul:hover, .menu:focus ul, .menu ul:focus, .menu:active ul, .menu ul:active {
     display: flex;
 }
-.menu:hover p, .menu:active p {
+.menu:hover p, .menu:focus p, .menu:active p {
     text-shadow: var(--highlight);
 }
 .menu li {
@@ -215,7 +215,7 @@ nav li.icons .fa {
     margin: .5rem;
     padding: .5rem 0;
 }
-.menu li a:hover, .menu li a:active {
+.menu li a:hover, .menu li a:focus, .menu li a:active {
     background: #FFF;
     color: #333;
 }
