@@ -14,6 +14,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 from flickr import load_album, get_url, get_exif, get_album_photos, FLICKR_URL_TEMPLATE
 from config import MENU_ITEMS, FLICKR_ALBUMS, PAGES, APPLETS
+import photo_stats
 
 app = Flask(__name__)
 app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde67'
@@ -90,11 +91,12 @@ def applet(name):
         return render_template('applet.tpl.html', applet=APPLETS[name])
     abort(404)
     
-@app.route('/cpce/plot', methods=['POST']):
+@app.route('/cpce/plot', methods=['POST'])
+def cpce_api_plot():
     # summary format:
     # { "marks": [[]], "picture_id": [], "voter_id": [], "rank": [] }
     summary = request.json
-    fig = photo_stats.do_plot(summary['marks'], summary['rank]')
+    fig = photo_stats.do_plot(summary['marks'], summary['rank'])
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
