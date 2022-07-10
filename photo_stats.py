@@ -15,7 +15,7 @@ def do_plot(marks, ticks=None):
     fig = plt.figure(figsize=(15, 10))
     box = fig.add_subplot(2, 1, 1)
     graph = fig.add_subplot(2, 1, 2)
-    fig.suptitle('Statistisques des notes du concours', fontsize=16)
+    fig.suptitle('Statistisques des notes', fontsize=16)
 
     box.boxplot(marks, sym='.',
         showmeans=True, meanline=True, meanprops={'color':'black', 'linestyle':'dotted'},
