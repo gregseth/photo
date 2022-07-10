@@ -109,7 +109,7 @@ def cpce_api_plot():
 def default(error=None):
     session['album'] = 'all'
     picture_list = load_album('all')
-    return redirect('photo/{}'.format(picture_list[0]))
+    return redirect('/photo/{}'.format(picture_list[0]))
 
 
 if __name__ == '__main__':
