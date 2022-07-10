@@ -8,6 +8,8 @@ from flask import abort
 
 import sys
 import random
+import photo_stats
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 from flickr import load_album, get_url, get_exif, get_album_photos, FLICKR_URL_TEMPLATE
 from config import MENU_ITEMS, FLICKR_ALBUMS, PAGES, APPLETS
@@ -86,6 +88,16 @@ def applet(name):
     if name in APPLETS:
         return render_template('applet.tpl.html', applet=APPLETS[name])
     abort(404)
+    
+@app.route('/cpce/plot', methods=['POST']):
+    # summary format:
+    # { "marks": [[]], "picture_id": [], "voter_id": [], "rank": [] }
+    summary = request.json
+    fig = photo_stats.do_plot(summary['marks'], summary['rank]')
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+    abort(500)
 
 
 @app.errorhandler(404)
