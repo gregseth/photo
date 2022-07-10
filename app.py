@@ -10,6 +10,7 @@ from flask import redirect
 from flask import abort
 from flask import request
 from flask import Response
+import matplotlib
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 from flickr import load_album, get_url, get_exif, get_album_photos, FLICKR_URL_TEMPLATE
@@ -19,6 +20,7 @@ import photo_stats
 app = Flask(__name__)
 app.secret_key = '8b98f9bacab5fbbf2576a90b55863c6e8868691dc44fcf99237c989edd6dde67'
 
+matplotlib.use('Agg')
 
 @app.route('/random')
 def redirect_random(album='all'):
