@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
+import sys
+import random
+import io
 
 from flask import Flask
 from flask import session
 from flask import render_template
 from flask import redirect
 from flask import abort
-
-import sys
-import random
-import photo_stats
+from flask import request
+from flask import Response
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 from flickr import load_album, get_url, get_exif, get_album_photos, FLICKR_URL_TEMPLATE
