@@ -53,7 +53,7 @@ def show_index(image_id):
         'exif': get_exif(image_id)
     }
     title = 'photographie' if album == 'all' else FLICKR_ALBUMS[album]['title']
-    return render_template('single.tpl.html', image=image, menus=MENU_ITEMS, title=title) 
+    return render_template('single.tpl.html', image=image, menus=MENU_ITEMS, title=title)
 
 @app.route('/album/<album>')
 def album(album):
@@ -63,7 +63,7 @@ def album(album):
         session['album'] = album
         photos = []
         album_photos = get_album_photos(FLICKR_ALBUMS[album]['id'])
-        
+
         background_photo = random.choice(album_photos)
         background_photo['size'] = 'b'
         background = {
@@ -92,13 +92,13 @@ def applet(name):
     if name in APPLETS:
         return render_template('applet.tpl.html', applet=APPLETS[name])
     abort(404)
-    
+
 @app.route('/cpce/plot', methods=['POST'])
 def cpce_api_plot():
     # summary format:
-    # { "marks": [[]], "picture_id": [], "voter_id": [], "rank": [] }
+    # { "marks": [[]], "picture_id": [], "voter_id": [], "rank": [],"range":{"min":0,"max":30} }
     summary = request.json
-    fig = photo_stats.do_plot(summary['marks'], summary['rank'])
+    fig = photo_stats.do_plot(summary['marks'], summary['rank'], summary['range']['min'], summary['range']['max'])
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
